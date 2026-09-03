@@ -267,7 +267,7 @@ export default function App() {
                   Active Desk
                 </div>
                 <h3 className="text-xl font-bold text-white mb-2">Priority Trade Desk</h3>
-                <p class="text-sm text-slate-300 mb-6">Immediate inquiry routing for industrial equipment, fertilizers, and lubricants.</p>
+                <p className="text-sm text-slate-300 mb-6">Immediate inquiry routing for industrial equipment, fertilizers, and lubricants.</p>
                 
                 <form onSubmit={handleQuickSubmit} className="space-y-4">
                   <div>
