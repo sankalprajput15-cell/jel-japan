@@ -181,7 +181,13 @@ export default function App() {
 
             {/* Mobile Menu Toggle Button */}
             <div className="lg:hidden flex items-center">
-              <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="text-slate-200 hover:text-[#F1C40F] focus:outline-none p-2">
+              <button
+                type="button"
+                id="mobile-menu-toggle"
+                aria-label="Toggle navigation menu"
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="text-slate-200 hover:text-[#F1C40F] focus:outline-none p-2"
+              >
                 {mobileMenuOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
               </button>
             </div>
@@ -269,12 +275,13 @@ export default function App() {
                 <h3 className="text-xl font-bold text-white mb-2">Priority Trade Desk</h3>
                 <p className="text-sm text-slate-300 mb-6">Immediate inquiry routing for industrial equipment, fertilizers, and lubricants.</p>
                 
-                <form onSubmit={handleQuickSubmit} className="space-y-4">
+                <form id="quick-inquiry-form" onSubmit={handleQuickSubmit} className="space-y-4">
                   <div>
-                    <label className="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1">Company / Entity Name</label>
+                    <label htmlFor="quick-company" className="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1">Company / Entity Name</label>
                     <input
                       type="text"
                       required
+                      id="quick-company"
                       value={quickCompany}
                       onChange={(e) => setQuickCompany(e.target.value)}
                       placeholder="e.g. Antilles Logistics Corp"
@@ -282,10 +289,11 @@ export default function App() {
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1">Corporate Email</label>
+                    <label htmlFor="quick-email" className="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1">Corporate Email</label>
                     <input
                       type="email"
                       required
+                      id="quick-email"
                       value={quickEmail}
                       onChange={(e) => setQuickEmail(e.target.value)}
                       placeholder="buyer@company.com"
@@ -293,8 +301,9 @@ export default function App() {
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1">Target Product Category</label>
+                    <label htmlFor="quick-category" className="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1">Target Product Category</label>
                     <select
+                      id="quick-category"
                       value={quickCategory}
                       onChange={(e) => setQuickCategory(e.target.value)}
                       className="w-full bg-[#060E18] border border-[#1E3E62] rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-[#F1C40F]"
@@ -305,7 +314,11 @@ export default function App() {
                       <option value="Automotive Glass & Technical Parts">Automotive Glass, Parts & Technical Supplies</option>
                     </select>
                   </div>
-                  <button type="submit" className="w-full bg-[#F1C40F] hover:bg-[#F4D03F] text-[#060E18] font-bold py-3.5 rounded-lg shadow-lg transition flex items-center justify-center gap-2 text-sm">
+                  <button
+                    type="submit"
+                    id="quick-inquiry-submit"
+                    className="w-full bg-[#F1C40F] hover:bg-[#F4D03F] text-[#060E18] font-bold py-3.5 rounded-lg shadow-lg transition flex items-center justify-center gap-2 text-sm cursor-pointer"
+                  >
                     <Send className="w-4 h-4" />
                     <span>Initiate Priority Inquiry</span>
                   </button>
@@ -397,32 +410,42 @@ export default function App() {
             </div>
             <div className="mt-6 md:mt-0 flex gap-2 overflow-x-auto pb-2">
               <button
+                type="button"
+                id="cat-filter-all"
                 onClick={() => setActiveCategory('all')}
-                className={`px-4 py-2 rounded-lg text-xs font-bold transition ${activeCategory === 'all' ? 'bg-[#0B192C] text-white' : 'bg-white text-slate-700 hover:bg-[#060E18] hover:text-white border border-slate-300'}`}
+                className={`px-4 py-2 rounded-lg text-xs font-bold transition cursor-pointer ${activeCategory === 'all' ? 'bg-[#0B192C] text-white' : 'bg-white text-slate-700 hover:bg-[#060E18] hover:text-white border border-slate-300'}`}
               >
                 All Divisions
               </button>
               <button
+                type="button"
+                id="cat-filter-div1"
                 onClick={() => setActiveCategory('div1')}
-                className={`px-4 py-2 rounded-lg text-xs font-bold transition ${activeCategory === 'div1' ? 'bg-[#0B192C] text-white' : 'bg-white text-slate-700 hover:bg-[#060E18] hover:text-white border border-slate-300'}`}
+                className={`px-4 py-2 rounded-lg text-xs font-bold transition cursor-pointer ${activeCategory === 'div1' ? 'bg-[#0B192C] text-white' : 'bg-white text-slate-700 hover:bg-[#060E18] hover:text-white border border-slate-300'}`}
               >
                 Industrial & Machinery
               </button>
               <button
+                type="button"
+                id="cat-filter-div2"
                 onClick={() => setActiveCategory('div2')}
-                className={`px-4 py-2 rounded-lg text-xs font-bold transition ${activeCategory === 'div2' ? 'bg-[#0B192C] text-white' : 'bg-white text-slate-700 hover:bg-[#060E18] hover:text-white border border-slate-300'}`}
+                className={`px-4 py-2 rounded-lg text-xs font-bold transition cursor-pointer ${activeCategory === 'div2' ? 'bg-[#0B192C] text-white' : 'bg-white text-slate-700 hover:bg-[#060E18] hover:text-white border border-slate-300'}`}
               >
                 Fertilizers & Nutrients
               </button>
               <button
+                type="button"
+                id="cat-filter-div3"
                 onClick={() => setActiveCategory('div3')}
-                className={`px-4 py-2 rounded-lg text-xs font-bold transition ${activeCategory === 'div3' ? 'bg-[#0B192C] text-white' : 'bg-white text-slate-700 hover:bg-[#060E18] hover:text-white border border-slate-300'}`}
+                className={`px-4 py-2 rounded-lg text-xs font-bold transition cursor-pointer ${activeCategory === 'div3' ? 'bg-[#0B192C] text-white' : 'bg-white text-slate-700 hover:bg-[#060E18] hover:text-white border border-slate-300'}`}
               >
                 Lubricants & Chemicals
               </button>
               <button
+                type="button"
+                id="cat-filter-div4"
                 onClick={() => setActiveCategory('div4')}
-                className={`px-4 py-2 rounded-lg text-xs font-bold transition ${activeCategory === 'div4' ? 'bg-[#0B192C] text-white' : 'bg-white text-slate-700 hover:bg-[#060E18] hover:text-white border border-slate-300'}`}
+                className={`px-4 py-2 rounded-lg text-xs font-bold transition cursor-pointer ${activeCategory === 'div4' ? 'bg-[#0B192C] text-white' : 'bg-white text-slate-700 hover:bg-[#060E18] hover:text-white border border-slate-300'}`}
               >
                 Automotive & Technical
               </button>
@@ -458,7 +481,12 @@ export default function App() {
 
                 <div className="px-6 py-4 bg-slate-50 border-t border-slate-200 flex items-center justify-between">
                   <span className="text-xs text-slate-500 font-medium">Min Order: 1 Metric Ton / 1 Unit</span>
-                  <button onClick={() => handleSelectProduct('Industrial Equipment & Belting')} className="bg-[#0B192C] hover:bg-[#F1C40F] hover:text-[#060E18] text-white text-xs font-bold px-4 py-2.5 rounded-lg transition flex items-center gap-1.5">
+                  <button
+                    type="button"
+                    id="inquire-lot-div1"
+                    onClick={() => handleSelectProduct('Industrial Equipment & Belting')}
+                    className="bg-[#0B192C] hover:bg-[#F1C40F] hover:text-[#060E18] text-white text-xs font-bold px-4 py-2.5 rounded-lg transition flex items-center gap-1.5 cursor-pointer"
+                  >
                     <PlusCircle className="w-4 h-4" />
                     <span>Inquire on this Lot</span>
                   </button>
@@ -492,7 +520,12 @@ export default function App() {
 
                 <div className="px-6 py-4 bg-slate-50 border-t border-slate-200 flex items-center justify-between">
                   <span className="text-xs text-slate-500 font-medium">Min Order: 25 Metric Tons (FCL)</span>
-                  <button onClick={() => handleSelectProduct('Agricultural Fertilizers & Nutrients')} className="bg-[#0B192C] hover:bg-[#F1C40F] hover:text-[#060E18] text-white text-xs font-bold px-4 py-2.5 rounded-lg transition flex items-center gap-1.5">
+                  <button
+                    type="button"
+                    id="inquire-lot-div2"
+                    onClick={() => handleSelectProduct('Agricultural Fertilizers & Nutrients')}
+                    className="bg-[#0B192C] hover:bg-[#F1C40F] hover:text-[#060E18] text-white text-xs font-bold px-4 py-2.5 rounded-lg transition flex items-center gap-1.5 cursor-pointer"
+                  >
                     <PlusCircle className="w-4 h-4" />
                     <span>Inquire on this Lot</span>
                   </button>
@@ -526,7 +559,12 @@ export default function App() {
 
                 <div className="px-6 py-4 bg-slate-50 border-t border-slate-200 flex items-center justify-between">
                   <span className="text-xs text-slate-500 font-medium">Min Order: 5 Drums / Pallet LCL</span>
-                  <button onClick={() => handleSelectProduct('Industrial Lubricants & Greases')} className="bg-[#0B192C] hover:bg-[#F1C40F] hover:text-[#060E18] text-white text-xs font-bold px-4 py-2.5 rounded-lg transition flex items-center gap-1.5">
+                  <button
+                    type="button"
+                    id="inquire-lot-div3"
+                    onClick={() => handleSelectProduct('Industrial Lubricants & Greases')}
+                    className="bg-[#0B192C] hover:bg-[#F1C40F] hover:text-[#060E18] text-white text-xs font-bold px-4 py-2.5 rounded-lg transition flex items-center gap-1.5 cursor-pointer"
+                  >
                     <PlusCircle className="w-4 h-4" />
                     <span>Inquire on this Lot</span>
                   </button>
@@ -560,7 +598,12 @@ export default function App() {
 
                 <div className="px-6 py-4 bg-slate-50 border-t border-slate-200 flex items-center justify-between">
                   <span className="text-xs text-slate-500 font-medium">Min Order: Mixed Assortment LCL</span>
-                  <button onClick={() => handleSelectProduct('Automotive Glass & Technical Parts')} className="bg-[#0B192C] hover:bg-[#F1C40F] hover:text-[#060E18] text-white text-xs font-bold px-4 py-2.5 rounded-lg transition flex items-center gap-1.5">
+                  <button
+                    type="button"
+                    id="inquire-lot-div4"
+                    onClick={() => handleSelectProduct('Automotive Glass & Technical Parts')}
+                    className="bg-[#0B192C] hover:bg-[#F1C40F] hover:text-[#060E18] text-white text-xs font-bold px-4 py-2.5 rounded-lg transition flex items-center gap-1.5 cursor-pointer"
+                  >
                     <PlusCircle className="w-4 h-4" />
                     <span>Inquire on this Lot</span>
                   </button>
@@ -595,8 +638,9 @@ export default function App() {
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">Select Product Division</label>
+                  <label htmlFor="calc-division" className="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">Select Product Division</label>
                   <select
+                    id="calc-division"
                     value={calcDivision}
                     onChange={(e) => setCalcDivision(e.target.value)}
                     className="w-full bg-[#060E18] border border-[#1E3E62] rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-[#F1C40F]"
@@ -609,10 +653,11 @@ export default function App() {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">Volume / Tonnage (Metric Tons)</label>
+                  <label htmlFor="calc-tonnage" className="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">Volume / Tonnage (Metric Tons)</label>
                   <input
                     type="number"
                     min="1"
+                    id="calc-tonnage"
                     value={calcTonnage}
                     onChange={(e) => setCalcTonnage(Number(e.target.value))}
                     className="w-full bg-[#060E18] border border-[#1E3E62] rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-[#F1C40F]"
@@ -622,8 +667,9 @@ export default function App() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">Destination Port Hub</label>
+                  <label htmlFor="calc-port" className="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">Destination Port Hub</label>
                   <select
+                    id="calc-port"
                     value={calcPort}
                     onChange={(e) => setCalcPort(e.target.value)}
                     className="w-full bg-[#060E18] border border-[#1E3E62] rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-[#F1C40F]"
@@ -638,8 +684,9 @@ export default function App() {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">Incoterms 2020 Preference</label>
+                  <label htmlFor="calc-incoterm" className="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">Incoterms 2020 Preference</label>
                   <select
+                    id="calc-incoterm"
                     value={calcIncoterm}
                     onChange={(e) => setCalcIncoterm(e.target.value)}
                     className="w-full bg-[#060E18] border border-[#1E3E62] rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-[#F1C40F]"
@@ -693,7 +740,12 @@ export default function App() {
               </div>
 
               <div className="mt-8 pt-4 border-t border-[#152C48] text-center">
-                <button onClick={handleTransferCalculator} className="inline-flex items-center gap-2 text-[#F1C40F] hover:underline text-xs font-bold bg-transparent border-0 cursor-pointer">
+                <button
+                  type="button"
+                  id="calc-transfer-btn"
+                  onClick={handleTransferCalculator}
+                  className="inline-flex items-center gap-2 text-[#F1C40F] hover:underline text-xs font-bold bg-transparent border-0 cursor-pointer"
+                >
                   <span>Lock in this rate with an official RFQ</span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
@@ -769,14 +821,15 @@ export default function App() {
               <p className="text-slate-300 text-sm mt-1">Complete the formal specification form below to receive an official commercial proforma invoice.</p>
             </div>
 
-            <form onSubmit={handleFormalRfqSubmit} className="p-8 sm:p-10 space-y-6">
+            <form id="formal-rfq-form" onSubmit={handleFormalRfqSubmit} className="p-8 sm:p-10 space-y-6">
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">Company / Organization Name *</label>
+                  <label htmlFor="rfq-company" className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">Company / Organization Name *</label>
                   <input
                     type="text"
                     required
+                    id="rfq-company"
                     value={rfqCompany}
                     onChange={(e) => setRfqCompany(e.target.value)}
                     placeholder="e.g. Caribbean Industrial Corp"
@@ -784,10 +837,11 @@ export default function App() {
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">Authorized Buyer Name *</label>
+                  <label htmlFor="rfq-name" className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">Authorized Buyer Name *</label>
                   <input
                     type="text"
                     required
+                    id="rfq-name"
                     value={rfqName}
                     onChange={(e) => setRfqName(e.target.value)}
                     placeholder="e.g. Marcus Sterling, Procurement Director"
@@ -798,10 +852,11 @@ export default function App() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">Corporate Email *</label>
+                  <label htmlFor="rfq-email" className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">Corporate Email *</label>
                   <input
                     type="email"
                     required
+                    id="rfq-email"
                     value={rfqEmail}
                     onChange={(e) => setRfqEmail(e.target.value)}
                     placeholder="m.sterling@caribbeanind.com"
@@ -809,10 +864,11 @@ export default function App() {
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">Phone / WhatsApp with Country Code *</label>
+                  <label htmlFor="rfq-phone" className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">Phone / WhatsApp with Country Code *</label>
                   <input
                     type="tel"
                     required
+                    id="rfq-phone"
                     value={rfqPhone}
                     onChange={(e) => setRfqPhone(e.target.value)}
                     placeholder="+1 868 555-0199"
@@ -823,8 +879,9 @@ export default function App() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">Target Product Category *</label>
+                  <label htmlFor="rfq-category" className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">Target Product Category *</label>
                   <select
+                    id="rfq-category"
                     value={rfqCategory}
                     onChange={(e) => setRfqCategory(e.target.value)}
                     className="w-full bg-slate-50 border border-slate-300 rounded-lg px-4 py-3 text-sm text-slate-800 focus:outline-none focus:border-[#0B192C]"
@@ -836,10 +893,11 @@ export default function App() {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">Quantity / Volume (Metric Tons or Units) *</label>
+                  <label htmlFor="rfq-quantity" className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">Quantity / Volume (Metric Tons or Units) *</label>
                   <input
                     type="text"
                     required
+                    id="rfq-quantity"
                     value={rfqQuantity}
                     onChange={(e) => setRfqQuantity(e.target.value)}
                     placeholder="e.g. 50 Metric Tons / 2x 40ft FCL"
@@ -850,8 +908,9 @@ export default function App() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">Incoterms 2020 Preference *</label>
+                  <label htmlFor="rfq-incoterm" className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">Incoterms 2020 Preference *</label>
                   <select
+                    id="rfq-incoterm"
                     value={rfqIncoterm}
                     onChange={(e) => setRfqIncoterm(e.target.value)}
                     className="w-full bg-slate-50 border border-slate-300 rounded-lg px-4 py-3 text-sm text-slate-800 focus:outline-none focus:border-[#0B192C]"
@@ -863,10 +922,11 @@ export default function App() {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">Discharge Port / Destination Country *</label>
+                  <label htmlFor="rfq-port" className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">Discharge Port / Destination Country *</label>
                   <input
                     type="text"
                     required
+                    id="rfq-port"
                     value={rfqPort}
                     onChange={(e) => setRfqPort(e.target.value)}
                     placeholder="e.g. Port of Kingston, Jamaica"
@@ -876,9 +936,10 @@ export default function App() {
               </div>
 
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">Technical Specifications / Notes / File Reference</label>
+                <label htmlFor="rfq-notes" className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">Technical Specifications / Notes / File Reference</label>
                 <textarea
                   rows={4}
+                  id="rfq-notes"
                   value={rfqNotes}
                   onChange={(e) => setRfqNotes(e.target.value)}
                   placeholder="Specify grade requirements, packaging preferences, inspection agency preference (SGS/BV), or target delivery date..."
@@ -900,7 +961,11 @@ export default function App() {
                 </label>
               </div>
 
-              <button type="submit" className="w-full bg-[#0B192C] hover:bg-[#152C48] text-[#F1C40F] font-bold py-4 rounded-lg shadow-lg transition flex items-center justify-center gap-2 text-base cursor-pointer">
+              <button
+                type="submit"
+                id="rfq-submit-btn"
+                className="w-full bg-[#0B192C] hover:bg-[#152C48] text-[#F1C40F] font-bold py-4 rounded-lg shadow-lg transition flex items-center justify-center gap-2 text-base cursor-pointer"
+              >
                 <Send className="w-5 h-5" />
                 <span>Transmit Formal RFQ to Trade Desk</span>
               </button>
@@ -914,8 +979,24 @@ export default function App() {
 
       {/* Confirmation Modal */}
       {modalOpen && (
-        <div className="fixed inset-0 bg-[#060E18]/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div
+          role="dialog"
+          aria-modal="true"
+          className="fixed inset-0 bg-[#060E18]/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) setModalOpen(false);
+          }}
+        >
           <div className="bg-white rounded-2xl max-w-lg w-full p-8 shadow-2xl border border-slate-200 relative">
+            <button
+              type="button"
+              id="modal-close-x-btn"
+              aria-label="Close modal"
+              onClick={() => setModalOpen(false)}
+              className="absolute top-4 right-4 text-slate-400 hover:text-slate-700 p-1.5 rounded-lg hover:bg-slate-100 transition cursor-pointer"
+            >
+              <X className="w-5 h-5" />
+            </button>
             <div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-6">
               <CheckCircle className="w-8 h-8" />
             </div>
@@ -940,6 +1021,8 @@ export default function App() {
             </div>
 
             <button
+              type="button"
+              id="modal-ack-btn"
               onClick={() => {
                 setModalOpen(false);
                 setRfqCompany('');

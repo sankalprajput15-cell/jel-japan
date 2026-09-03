@@ -1,13 +1,54 @@
 <!doctype html>
 <html lang="en" class="scroll-smooth">
   <head>
+    <script>
+      (function() {
+        try {
+          var originalFetch = typeof window !== 'undefined' && window.fetch ? window.fetch.bind(window) : null;
+          var activeFetch = originalFetch;
+
+          function getFetch() {
+            return activeFetch;
+          }
+          function setFetch(fn) {
+            activeFetch = fn;
+          }
+
+          try {
+            Object.defineProperty(window, 'fetch', {
+              get: getFetch,
+              set: setFetch,
+              configurable: true,
+              enumerable: true
+            });
+          } catch (e1) {
+            try {
+              window.fetch = originalFetch;
+            } catch (e2) {}
+          }
+
+          if (typeof Window !== 'undefined' && Window.prototype) {
+            try {
+              Object.defineProperty(Window.prototype, 'fetch', {
+                get: getFetch,
+                set: setFetch,
+                configurable: true,
+                enumerable: true
+              });
+            } catch (e3) {}
+          }
+        } catch (err) {}
+      })();
+    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Jel Japan Enterprise Ltd. | Global Merchant Exporter & Industrial Procurement</title>
-    <meta name="description" content="Global Merchant Exporter, Commodity & Industrial Sourcing, Technical Procurement, and CARICOM/International Logistics anchored at Point Lisas, Trinidad & Tobago." />
-    <meta property="og:title" content="Jel Japan Enterprise Ltd. | Global Merchant Exporter" />
+    <title>Jel Japan Enterprise Ltd.</title>
+    <meta name="description" content="Global Merchant Exporter, Commodity & Industrial Sourcing, Technical Procurement, and CARICOM/International Logistics." />
+    <meta property="og:title" content="Jel Japan Enterprise Ltd." />
     <meta property="og:description" content="Global Merchant Exporter, Commodity & Industrial Sourcing, Technical Procurement, and CARICOM/International Logistics." />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.jeljapanenterpriseltd.shop/" />
+    <link rel="canonical" href="https://www.jeljapanenterpriseltd.shop/" />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
